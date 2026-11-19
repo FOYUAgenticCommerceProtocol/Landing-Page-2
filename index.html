@@ -936,11 +936,32 @@ h2.ink1{color:var(--ink)}
 .lpv .mob .lrows{font-size:13.5px;margin-top:14px}
 .lpw{aspect-ratio:16/10}@media(max-width:900px){.lpw{aspect-ratio:430/1120}}
 
+
+/* consumer menu switch (19 Nov) */
+.cnav{display:none}.cnav:empty{display:none!important}
+.ucl{font:inherit;font-weight:550;color:var(--ink);text-decoration:none;padding:8px 12px;border-radius:999px;white-space:nowrap;min-height:40px;display:inline-flex;align-items:center}
+.ucl:hover,.ucl:focus-visible{background:var(--tint);color:var(--pri)}
+.ucl.biz{color:var(--muted);font-weight:500}
+body.c-min nav.main{justify-content:flex-end}
+body.c-uc nav.main{gap:0}
+body.c-min .burger{display:none!important}
+body.c-min .hcta{display:inline-block!important}
+@media (max-width:980px){body.c-min nav.main{display:flex!important;flex:1}
+ body.c-uc nav.main{display:none!important}
+ body.c-uc .cnav{display:flex;flex:1 0 100%;width:100%;gap:6px;overflow-x:auto;padding:0 0 10px;scrollbar-width:none;-webkit-mask:linear-gradient(90deg,#000 88%,transparent)}
+ body.c-uc .cnav::-webkit-scrollbar{display:none}
+ body.c-uc .cnav .ucl{flex:none;border:1px solid var(--line);background:#fff;font-size:14px;min-height:36px;padding:6px 12px}
+ body.c-min .hcta,body.c-uc .hcta{padding:9px 16px;min-height:40px}
+ body.c-uc .hcta{display:inline-block!important}body.c-uc .burger{margin-left:8px}body.c-uc .dpin{display:none!important}body.c-uc .dacc>li:last-child{border-bottom:0}body.c-uc .dscroll{padding-bottom:0}
+ body.c-min nav.main .biz{display:inline-flex!important;padding:8px 6px;font-size:14.5px}}
+footer .crow{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center}footer .crow a{display:inline;padding:4px 0}
+footer .crow .cp{opacity:.7;font-size:14px}
+body.c-min footer .fin{align-items:center}
 </style>
 <a class="skip" href="#page">Skip to content</a>
 <div class="protobar"><div class="wrap pbin"><span class="lab">Palette</span>
 <span class="seg" id="sp" role="group" aria-label="Palette"></span></div></div>
-<header class="site"><div class="wrap"><div class="hin"><a href="#top" aria-label="Home" class="wm" data-aud="any" data-h="#top"></a><nav class="main" id="nav" aria-label="Main"></nav><a class="btn hcta" id="hcta" href="#form"></a><button class="burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Menu"><svg class="bgi" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div><div class="drawer" id="drawer"></div></div></header>
+<header class="site"><div class="wrap"><div class="hin"><a href="#top" aria-label="Home" class="wm" data-aud="any" data-h="#top"></a><nav class="main" id="nav" aria-label="Main"></nav><a class="btn hcta" id="hcta" href="#form"></a><button class="burger" id="burger" aria-expanded="false" aria-controls="drawer" aria-label="Menu"><svg class="bgi" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button></div><div class="cnav" id="cnav" aria-label="Use cases"></div><div class="drawer" id="drawer"></div></div></header>
 <main id="page" tabindex="-1"></main>
 <footer><div class="wrap"><div class="fin"><div><span class="wm" role="img" aria-label="Wordmark"></span><p class="tg" id="ftag"></p><p class="sg" id="fsig"></p></div><div class="fcols" id="fcols"></div></div><p class="small"><a href="gallery.html" style="display:inline;text-decoration:underline">Review gallery: all films and mockup variants</a></p><p class="small" id="foot"></p></div></footer>
 <dialog class="zv" id="zv" aria-labelledby="zcap">
@@ -1218,7 +1239,7 @@ function bindSignup(f){const m=f.querySelector('#f-id'),er=document.getElementBy
  document.getElementById('tyback').onclick=()=>{document.getElementById('ty').hidden=true;document.getElementById('sgform').hidden=false;m.focus()};bindLinks(document.getElementById('ty'))}
 function bindForm(){const f=document.getElementById('frm');if(!f)return;if(f.classList.contains('sgf'))return bindSignup(f);const F=D.PAGES[st.a].form;f.onsubmit=ev=>{ev.preventDefault();const em=f.querySelector('input[type=email]'),er=document.getElementById('ferr'),r=document.getElementById('fres');if(!em.value||!em.checkValidity()){em.setAttribute('aria-invalid','true');er.hidden=false;r.hidden=true;em.focus();return}em.removeAttribute('aria-invalid');er.hidden=true;r.textContent=`Prototype: nothing was sent. On the live site this would go to ${F.team}.`;r.hidden=false}}
 function render(scroll,keepFocus){
- applyPal();
+ navSwap();applyPal();
  seg('sd',D.DIRS,'d');seg('sa',D.PROF,'a');seg('sp',D.PALN,'p');seg('si',D.ICONS,'i');
  const P=D.PAGES[st.a];
  const hc=document.getElementById('hcta');hc.textContent=P.cta[0];hc.href=P.cta[1];hc.onclick=ev=>{ev.preventDefault();go('any',P.cta[1])};
@@ -1231,10 +1252,28 @@ function render(scroll,keepFocus){
  document.getElementById('fcols').innerHTML=(D.FOOT_BY[st.a]||D.FOOT_COLS).map(([t,ls])=>`<div><b>${esc(t)}</b>${ls.map(([n,a,h])=>`<a href="${h}" data-aud="${a}" data-h="${h}">${esc(n)}</a>`).join('')}</div>`).join('');
  bindLinks(document.querySelector('footer'));
  document.getElementById('foot').textContent=D.FOOT;
+ consumerMenu();
  document.documentElement.dataset.state=tok().slice(1);
  if(scroll)window.scrollTo(0,0);
  if(keepFocus){const a=document.activeElement;if(!a||a===document.body){}}
 }
+
+let cmode='uc';
+const CNAV=[{t:'Use cases',id:'cuc',w:680,plain:true,groups:[['Find and choose',[['Discovery agent','Best option, with reasons','con','#mocks:0',''],['Right-size agent','Your size, first time','con','#mocks:1',''],['Specialist agents','Add expert agents','con','#mocks:5','']]],['On time and on budget',[['Gift agent','Chosen and there in time','con','#mocks:2',''],['Restock agent','Essentials, within your limit','con','#mocks:3',''],['Price-watch agent','Price rises wait for a yes','con','#mocks:4','']]]]},{t:'For business',id:'cbiz',link:['mer','#top']}];
+let NAV0=null;function navSwap(){if(!NAV0)NAV0=D.NAV;D.NAV=(st.a==='con'&&cmode==='uc')?CNAV:NAV0}
+const CUC=[['Discovery agent','#mocks:0'],['Right-size agent','#mocks:1'],['Specialist agents','#mocks:5'],['Gift agent','#mocks:2'],['Restock agent','#mocks:3'],['Price-watch agent','#mocks:4']];
+function consumerMenu(){const on=st.a==='con';document.querySelectorAll('.cml').forEach(e=>e.hidden=!on);
+ const sc=document.getElementById('scm');if(sc){sc.innerHTML=[['min','Minimal'],['uc','Use cases']].map(([k,v])=>`<button type="button" data-v="${k}" aria-pressed="${cmode===k}">${v}</button>`).join('');sc.querySelectorAll('button').forEach(b=>b.onclick=()=>{if(cmode===b.dataset.v)return;cmode=b.dataset.v;try{sessionStorage.setItem('foyu_cmenu',cmode)}catch(_){}render(false,true)})}
+ document.body.classList.toggle('c-min',on&&cmode==='min');document.body.classList.toggle('c-uc',on&&cmode==='uc');
+ const cn=document.getElementById('cnav');cn.innerHTML='';if(!on)return;
+ const nav=document.getElementById('nav'),biz='<a class="ucl biz" href="#top" data-aud="mer" data-h="#top">For business</a>';
+ const uc=CUC.map(([n,h])=>`<a class="ucl" href="#mocks" data-aud="con" data-h="${h}">${esc(n)}</a>`).join('');
+ if(cmode==='min'){nav.innerHTML=biz;document.getElementById('drawer').innerHTML=''}
+ const yr='<span class="cp">© 2026</span>';
+ document.getElementById('fcols').innerHTML=cmode==='min'
+  ?`<div class="crow"><a href="#film" data-aud="con" data-h="#film">The film</a><a href="#faq" data-aud="con" data-h="#faq">FAQs</a><a href="#top" data-aud="mer" data-h="#top">For business</a>${yr}</div>`
+  :`<div><b>Use cases</b>${CUC.map(([n,h])=>`<a href="#mocks" data-aud="con" data-h="${h}">${esc(n)}</a>`).join('')}</div><div><b>Learn</b><a href="#film" data-aud="con" data-h="#film">The film</a><a href="#faq" data-aud="con" data-h="#faq">FAQs</a></div><div><b>For business</b><a href="#top" data-aud="mer" data-h="#top">Merchants</a><a href="#top" data-aud="par" data-h="#top">Partners</a><a href="#top" data-aud="dev" data-h="#top">Developers</a></div>`;
+ bindLinks(document.querySelector('header.site'));bindLinks(document.querySelector('footer'))}
 /* ---------- zoom viewer ---------- */
 const Z=(()=>{const dlg=document.getElementById('zv'),stg=document.getElementById('zstage'),im=document.getElementById('zimg'),pct=document.getElementById('zpct');
  let s=1,fit=1,x=0,y=0,opener=null,ptrs=new Map(),pinch=null,last=null;
