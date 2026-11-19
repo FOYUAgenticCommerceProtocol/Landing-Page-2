@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><link rel="icon" id="fav32" type="image/png" sizes="32x32" href="media/favicon/plum_32.png">
+<!doctype html><html lang="en"><head><script>(function(){var p=location.pathname;if(p.length>1&&p.slice(-1)==="/")try{history.replaceState(null,"",p.replace(/\/+$/,"")+location.search+location.hash)}catch(e){}})()</script><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><link rel="icon" id="fav32" type="image/png" sizes="32x32" href="media/favicon/plum_32.png">
 <link rel="icon" id="favico" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" id="favsvg" type="image/svg+xml" href="media/favicon/plum.svg">
 <link rel="manifest" href="/site.webmanifest">
@@ -1031,9 +1031,12 @@ LPF.scan();
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 let st={d:'a',a:'con',p:'plum',i:'2d'},mtab=0;
 const RX=/^#([abc])-(con|mer|par|dev)-(plum|harbour)(?:-(3d|2d|none))?$/;
-function parseHash(){const m=(location.hash||'').match(RX);if(m){st={d:'a',a:m[2],p:m[3],i:'2d'};return true}return false}
-const tok=()=>'#'+st.d+'-'+st.a+'-'+st.p+(st.i!=='2d'?'-'+st.i:'');
-function pushState(){try{if(location.hash!==tok())history.pushState(st,'',tok())}catch(e){}}
+const PATHS={con:'/',mer:'/merchants',par:'/partners',dev:'/developers'};
+function fromPath(){const p=(location.pathname.replace(/\/index\.html$/,'/').replace(/(.)\/+$/,'$1')||'/').toLowerCase();for(const k in PATHS)if(PATHS[k]===p)return k;return null}
+function parseHash(){const m=(location.hash||'').match(RX);if(m){st={d:'a',a:m[2],p:m[3],i:'2d'};return true}const a=fromPath();if(a||location.hash===''||location.hash==='#harbour'||location.hash==='#plum'){st={d:'a',a:a||'con',p:location.hash==='#harbour'?'harbour':'plum',i:'2d'};return true}return false}
+const tok=()=>(fromPath()===null&&location.pathname!=='/'?location.pathname:PATHS[st.a])+(st.p==='harbour'?'#harbour':'');
+const here=()=>location.pathname+location.hash;
+function pushState(){try{if(here()!==tok())history.pushState(st,'',tok())}catch(e){}}
 document.addEventListener('loadedmetadata',e=>{if(e.target.tagName==='VIDEO')e.target.currentTime=0},true);document.addEventListener('ended',e=>{if(e.target.tagName==='VIDEO')e.target.currentTime=0},true);
 function applyPal(){const P=D.PAL[st.p],r=document.documentElement.style;for(const k in P)r.setProperty('--'+k,P[k])}
 function pill(s){if(s==='proto')return '';return `<span class="pill ${s}">${esc(D.ST[s])}</span>`}
