@@ -31,3 +31,55 @@
   for = "/site.webmanifest"
   [headers.values]
     Content-Type = "application/manifest+json"
+
+# Persona web addresses: each serves the one-page site, which opens that persona's hero.
+[[redirects]]
+  from = "/merchants"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/partners"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/developers"
+  to = "/index.html"
+  status = 200
+
+# Singular spellings and campaign shortcuts forward to the main addresses.
+[[redirects]]
+  from = "/merchant"
+  to = "/merchants"
+  status = 301
+
+[[redirects]]
+  from = "/partner"
+  to = "/partners"
+  status = 301
+
+[[redirects]]
+  from = "/developer"
+  to = "/developers"
+  status = 301
+
+[[redirects]]
+  from = "/consumer"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/consumers"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/sell"
+  to = "/merchants"
+  status = 301
+
+[[redirects]]
+  from = "/build"
+  to = "/developers"
+  status = 301
