@@ -1238,7 +1238,7 @@ function bindSignup(f){const m=f.querySelector('#f-id'),er=document.getElementBy
  f.onsubmit=ev=>{ev.preventDefault();if(!idOK(m.value)){er.hidden=false;m.setAttribute('aria-invalid','true');m.focus();return}er.hidden=true;m.removeAttribute('aria-invalid');showTY(m.value)};
  document.getElementById('tyback').onclick=()=>{document.getElementById('ty').hidden=true;document.getElementById('sgform').hidden=false;m.focus()};bindLinks(document.getElementById('ty'))}
 function bindForm(){const f=document.getElementById('frm');if(!f)return;if(f.classList.contains('sgf'))return bindSignup(f);const F=D.PAGES[st.a].form;f.onsubmit=ev=>{ev.preventDefault();const em=f.querySelector('input[type=email]'),er=document.getElementById('ferr'),r=document.getElementById('fres');if(!em.value||!em.checkValidity()){em.setAttribute('aria-invalid','true');er.hidden=false;r.hidden=true;em.focus();return}em.removeAttribute('aria-invalid');er.hidden=true;r.textContent=`Prototype: nothing was sent. On the live site this would go to ${F.team}.`;r.hidden=false}}
-const TITLES={con:'Your Shopping Agent',mer:'Sell to Shopping Agents',par:'Agentic Mini-Programs',dev:'Build Commerce Agents'};
+const TITLES={con:'Your Shopping Agent',mer:'Sell to Shopping Agents',par:'Agentic Mini-Programs',dev:'Build Trusted Agents'};
 function render(scroll,keepFocus){
  navSwap();applyPal();document.title=TITLES[st.a]||TITLES.con;
  seg('sd',D.DIRS,'d');seg('sa',D.PROF,'a');seg('sp',D.PALN,'p');seg('si',D.ICONS,'i');
