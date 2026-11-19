@@ -1,0 +1,53 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:01.950
+Introducing. The Shopping Agent on Your Side. For agents built anywhere.
+
+2
+00:00:02.000 --> 00:00:04.450
+An outside agent wants to buy something. Lumen Assist, run by Lumen Labs, both fictional.
+
+3
+00:00:04.500 --> 00:00:06.950
+Connect: Lumen Labs registers its agent. Identity says who answers for it; it authorises no spending.
+
+4
+00:00:07.000 --> 00:00:08.950
+Discover: search and quotes are open; orders need a person's scope.
+
+5
+00:00:09.000 --> 00:00:11.450
+Scope: Maya grants headphones, up to $200, three stores, until Thursday, in her own app.
+
+6
+00:00:11.500 --> 00:00:13.950
+Request: signed request R-2207, headphones at $189 from homecircuit, for Maya.
+
+7
+00:00:14.000 --> 00:00:16.450
+Evaluate: the rules layer checks identity, scope, limits, the signed offer and risk.
+
+8
+00:00:16.500 --> 00:00:19.450
+Execute: the platform places the order with homecircuit; Northpay authorises $189 against her limits; Lumen gets the result, never card details.
+
+9
+00:00:19.500 --> 00:00:20.950
+Record: one record for Maya, Lumen Labs, homecircuit and Northpay, from scope to delivery.
+
+10
+00:00:21.000 --> 00:00:23.950
+Then Lumen asks to add a $39 warranty and ship to a new address. Refused: outside the scope, with a reason, and shown to Maya.
+
+11
+00:00:24.000 --> 00:00:25.950
+Identity lets an agent in. Scope decides what it may do.
+
+12
+00:00:26.000 --> 00:00:27.450
+Safe, Fast, Fun. Outside agents welcome. Inside the rules.
+
+13
+00:00:27.500 --> 00:00:29.950
+The Shopping Agent on Your Side. Register technical interest.

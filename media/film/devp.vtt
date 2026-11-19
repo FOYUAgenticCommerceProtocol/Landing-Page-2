@@ -1,0 +1,49 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.450
+For developers. The Shopping Agent on Your Side.
+
+2
+00:00:02.500 --> 00:00:07.450
+Step 1, purpose and scope. Start with the job: restock household basics. Never run out, never overspend. Success is on time and inside the limit. Only stores the person allows.
+
+3
+00:00:07.500 --> 00:00:12.950
+Step 2, instructions and guardrails. A careful household buyer. Compare, then ask before buying. Never order outside the limits. The person’s limits always win.
+
+4
+00:00:13.000 --> 00:00:18.450
+Step 3, model and tools. Choose the model for reasoning, cost and speed. Find offers, read only. Request a quote, price held briefly. Hand off to the store’s checkout; the store stays the seller. Every tool is declared up front.
+
+5
+00:00:18.500 --> 00:00:23.950
+Step 4, memory and orchestration. Past orders the person shares. A trigger when pods run low. It asks a store’s agent for a quote. If the price moved, it asks again. A message between agents is a request, not a permission.
+
+6
+00:00:24.000 --> 00:00:29.450
+Step 5, interface. A chat people already know. Restock pods and coffee under $60 a month. Pods $22 and coffee $34, $56, inside your limit. Approve? It asks. They approve.
+
+7
+00:00:29.500 --> 00:00:35.450
+Step 6, test in the sandbox. Price changed mid-task: asked again. Pack size swapped: caught. Hidden instruction in a listing: ignored. Spend limit reached: refused. 45 of 45 runs passed. No money moved.
+
+8
+00:00:35.500 --> 00:00:40.950
+Step 7, deploy. Our app: each shopper switches it on. Mini-Stores: the store offers it. Partner Mini-Programs: the partner approves first. Other agents: checked on every call. Nothing runs until someone says yes.
+
+9
+00:00:41.000 --> 00:00:45.950
+Step 8, earn, proposed. A fee per successful task, shown first. No fee when a task is not completed. Paid ranking is never on offer. A proposal: nothing is live yet.
+
+10
+00:00:46.000 --> 00:00:50.950
+It never spends on its own. Deploying never lets an agent spend. The person’s limits decide every order. The payment provider authorises payment. The store stays the seller.
+
+11
+00:00:51.000 --> 00:00:53.450
+Safe, Fast, Fun!
+
+12
+00:00:53.500 --> 00:00:57.450
+The Shopping Agent on Your Side. Register technical interest.

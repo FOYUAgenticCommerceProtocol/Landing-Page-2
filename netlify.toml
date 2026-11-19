@@ -1,0 +1,28 @@
+# Static site: no build step. Netlify serves the repository root as-is.
+[build]
+  publish = "."
+  command = ""
+
+# Pages: always revalidate so a new push shows up straight away.
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Media: cache for a day in browsers and at the edge.
+[[headers]]
+  for = "/media/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Caption files must be served as WebVTT or browsers ignore them.
+[[headers]]
+  for = "/media/film/*.vtt"
+  [headers.values]
+    Content-Type = "text/vtt; charset=utf-8"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
