@@ -1,7 +1,9 @@
 {
- "name": "The Shopping Agent on Your Side",
+ "id": "/",
+ "name": "Your Trusted Shopping Agent",
  "short_name": "Shopping Agent",
  "start_url": "/",
+ "scope": "/",
  "display": "standalone",
  "background_color": "#FFFDFB",
  "theme_color": "#712150",
@@ -9,12 +11,14 @@
   {
    "src": "/media/favicon/plum_192.png?v=2",
    "sizes": "192x192",
-   "type": "image/png"
+   "type": "image/png",
+   "purpose": "any"
   },
   {
    "src": "/media/favicon/plum_512.png?v=2",
    "sizes": "512x512",
-   "type": "image/png"
+   "type": "image/png",
+   "purpose": "any"
   }
  ]
 }
