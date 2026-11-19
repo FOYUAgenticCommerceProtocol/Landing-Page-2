@@ -1,0 +1,20 @@
+{
+ "name": "The Shopping Agent on Your Side",
+ "short_name": "Shopping Agent",
+ "start_url": "/",
+ "display": "standalone",
+ "background_color": "#FFFDFB",
+ "theme_color": "#712150",
+ "icons": [
+  {
+   "src": "/media/favicon/plum_192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "/media/favicon/plum_512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  }
+ ]
+}
