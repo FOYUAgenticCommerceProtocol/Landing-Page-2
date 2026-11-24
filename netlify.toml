@@ -47,6 +47,44 @@
   [headers.values]
     Content-Type = "application/manifest+json"
 
+# PoC surfaces and APIs run on Vercel (repo FOYU_POC_Q4_2026, surfaces/web) and are served under foyu.ai.
+# These proxies come first so they win over the persona rules below. Status 200 keeps foyu.ai in the address bar.
+[[redirects]]
+  from = "/app/*"
+  to = "https://foyu-poc-web.vercel.app/app/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/merchants/app/*"
+  to = "https://foyu-poc-web.vercel.app/merchants/app/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/partners/app/*"
+  to = "https://foyu-poc-web.vercel.app/partners/app/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/developers/app/*"
+  to = "https://foyu-poc-web.vercel.app/developers/app/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/assets/*"
+  to = "https://foyu-poc-web.vercel.app/assets/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/*"
+  to = "https://foyu-poc-web.vercel.app/api/:splat"
+  status = 200
+  force = true
+
 # Persona web addresses: each serves the one-page site, which opens that persona's hero.
 [[redirects]]
   from = "/merchants"
