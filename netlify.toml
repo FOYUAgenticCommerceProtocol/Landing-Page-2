@@ -85,6 +85,288 @@
   status = 200
   force = true
 
+# Section web addresses: foyu.ai/joinnow, foyu.ai/merchants/joinnow, foyu.ai/partners/faq and so on.
+# Each serves the one-page site, which opens that persona and scrolls to the section.
+[[redirects]]
+  from = "/joinnow"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/mockups"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/value"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/how"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/model"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/resp"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/control"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/platform"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/story"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/devhub"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/a2a"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/film"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/faq"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/status"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/merchants/joinnow"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/merchants/mockups"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/merchants/value"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/merchants/how"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/merchants/model"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/merchants/resp"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/merchants/control"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/merchants/platform"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/merchants/story"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/merchants/devhub"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/merchants/a2a"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/merchants/film"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/merchants/faq"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/merchants/status"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/partners/joinnow"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/partners/mockups"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/partners/value"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/partners/how"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/partners/model"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/partners/resp"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/partners/control"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/partners/platform"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/partners/story"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/partners/devhub"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/partners/a2a"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/partners/film"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/partners/faq"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/partners/status"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/developers/joinnow"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/developers/mockups"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/developers/value"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/developers/how"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/developers/model"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/developers/resp"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/developers/control"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/developers/platform"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/developers/story"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/developers/devhub"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/developers/a2a"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/developers/film"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/developers/faq"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/developers/status"
+  to = "/index.html"
+  status = 200
+
 # Persona web addresses: each serves the one-page site, which opens that persona's hero.
 [[redirects]]
   from = "/merchants"
