@@ -47,6 +47,14 @@
   [headers.values]
     Content-Type = "application/manifest+json"
 
+# iPhone app passkeys: tells iOS that the FOYU app (Team 5HK7S28T9A, bundle ai.foyu.app) may use foyu.ai passkeys.
+# A static file in this repo, kept apart from the /.well-known/oauth-* proxies below. Apple requires application/json.
+[[headers]]
+  for = "/.well-known/apple-app-site-association"
+  [headers.values]
+    Content-Type = "application/json"
+    Cache-Control = "public, max-age=3600"
+
 # PoC surfaces and APIs run on Vercel (repo FOYU_POC_Q4_2026, surfaces/web) and are served under foyu.ai.
 # These proxies come first so they win over the persona rules below. Status 200 keeps foyu.ai in the address bar.
 # FOYU for assistants (MCP): OAuth metadata that Claude and other assistants read before connecting to
