@@ -57,13 +57,42 @@
 
 # PoC surfaces and APIs run on Vercel (repo FOYU_POC_Q4_2026, surfaces/web) and are served under foyu.ai.
 # These proxies come first so they win over the persona rules below. Status 200 keeps foyu.ai in the address bar.
-# FOYU for assistants (MCP): OAuth metadata that Claude and other assistants read before connecting to
-# foyu.ai/mcp. Served by the PoC on Vercel, like /api/*.
+# FOYU for assistants (MCP): the four MCP servers (foyu.ai/mcp, /merchants/mcp, /partners/mcp, /developers/mcp)
+# and the OAuth metadata assistants read before connecting. Served by the PoC on Vercel, like /api/*.
 [[redirects]]
   from = "/mcp"
   to = "https://foyu-poc-web.vercel.app/mcp"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/merchants/mcp"
+  to = "https://foyu-poc-web.vercel.app/merchants/mcp"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/partners/mcp"
+  to = "https://foyu-poc-web.vercel.app/partners/mcp"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/developers/mcp"
+  to = "https://foyu-poc-web.vercel.app/developers/mcp"
+  status = 200
+  force = true
+
+# Setup guide for the four MCP servers and the FOYU API reference (static pages in docs/).
+[[redirects]]
+  from = "/docs/mcp"
+  to = "/docs/mcp.html"
+  status = 200
+
+[[redirects]]
+  from = "/docs/api"
+  to = "/docs/api.html"
+  status = 200
 
 [[redirects]]
   from = "/.well-known/oauth-protected-resource/*"
