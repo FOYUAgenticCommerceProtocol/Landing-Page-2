@@ -83,7 +83,12 @@
   status = 200
   force = true
 
-# Setup guide for the four MCP servers and the FOYU API reference (static pages in docs/).
+# Docs: overview, MCP setup guide and API reference (static pages in docs/, shared docs.css and docs.js).
+[[redirects]]
+  from = "/docs"
+  to = "/docs/index.html"
+  status = 200
+
 [[redirects]]
   from = "/docs/mcp"
   to = "/docs/mcp.html"
