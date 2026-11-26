@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>FOYU MCP · Set up in under a minute</title>
+<meta name="description" content="Use FOYU from the AI assistant you already use. One address per persona: shoppers, merchants, partners and developers. Private preview, test mode.">
+<link rel="icon" type="image/svg+xml" href="/media/favicon/plum.svg?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap">
+<style>
+/* Plum for shoppers, Harbour for merchants, partners and developers (owner's brand rule). */
+:root{--pri:#712150;--grad:linear-gradient(90deg,#712150,#D9467A 55%,#F0A23A);--ink:#2A1424;--body:#4A3342;--muted:#7A6672;--line:#E7DCD3;--bg:#FFFDFB;--soft:#F7EEF2;--on:#fff;color-scheme:light}
+body[data-p=merchants]{--pri:#5A358C;--grad:linear-gradient(90deg,#004466,#8A67C2 55%,#F2925C);--ink:#1C1922;--body:#3A3741;--muted:#64616B;--line:#E3E2E8;--bg:#FFFFFF;--soft:#EEE7FD}
+body[data-p=partners]{--pri:#3A2659;--grad:linear-gradient(90deg,#004466,#8A67C2 55%,#F2925C);--ink:#161616;--body:#333;--muted:#636363;--line:#E1E1E1;--bg:#FFFFFF;--soft:#F1EBFD}
+body[data-p=developers]{--pri:#5A358C;--grad:linear-gradient(90deg,#004466,#8A67C2 55%,#F2925C);--ink:#1C1922;--body:#3A3741;--muted:#64616B;--line:#E3E2E8;--bg:#FFFFFF;--soft:#EEE7FD}
+@media (prefers-color-scheme:dark){
+  :root{--pri:#E58AB4;--ink:#F6ECF1;--body:#E3D3DC;--muted:#B9A6B2;--line:#3D2A36;--bg:#160C12;--soft:#2A1822;--on:#2A1424;color-scheme:dark}
+  body[data-p=merchants],body[data-p=partners],body[data-p=developers]{--pri:#C9ACFF;--ink:#ECEAEF;--body:#D6D3DC;--muted:#9F9DA5;--line:#2F2C35;--bg:#0F0D13;--soft:#241D33;--on:#0F0D13}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--body);font:16px/1.5 "Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;transition:background .2s}
+a{color:var(--pri)}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:880px;margin:0 auto;padding:18px 16px}
+header .wm{height:22px;display:block}
+header nav{display:flex;gap:18px;font-size:15px}header nav a{color:var(--ink);text-decoration:none}header nav a:hover{text-decoration:underline}
+main{max-width:880px;margin:0 auto;padding:24px 16px 72px}
+h1{font-size:clamp(34px,6vw,52px);line-height:1.05;letter-spacing:-.02em;color:var(--ink);text-align:center;margin:24px 0 10px}
+.sub{text-align:center;color:var(--muted);margin:0 0 28px}
+.seg{display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin:0 auto 40px;padding:5px;border:1px solid var(--line);border-radius:999px;width:max-content;max-width:100%}
+.seg button{font:inherit;font-size:15px;border:0;background:transparent;color:var(--body);padding:8px 16px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed=true]{background:var(--pri);color:var(--on);font-weight:600}
+.step{margin:0 auto 44px;max-width:740px}
+.tag{display:inline-block;border:1.5px solid var(--ink);color:var(--ink);border-radius:8px;padding:1px 8px;font-size:13px;font-weight:600}
+h2{font-size:24px;color:var(--ink);margin:12px 0 6px}
+.muted{color:var(--muted)}
+.note{display:flex;gap:10px;align-items:center;background:var(--soft);border-radius:12px;padding:10px 14px;font-size:14px;margin:12px 0 16px}
+.pill{border:1px solid var(--ink);border-radius:999px;padding:0 8px;font-size:12px;font-weight:600;color:var(--ink);white-space:nowrap}
+.btn{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border-radius:999px;background:var(--pri);color:var(--on);font-weight:600;text-decoration:none;border:0;font:inherit;font-weight:600;cursor:pointer}
+.addr{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:14px;padding:10px 10px 10px 16px;margin:14px 0 18px;background:var(--bg)}
+.addr code{flex:1;font:600 16px/1.3 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--ink);overflow-wrap:anywhere}
+.addr button{font:inherit;font-size:14px;font-weight:600;border:1px solid var(--line);background:transparent;color:var(--pri);border-radius:999px;padding:6px 14px;cursor:pointer}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media (max-width:560px){.tiles{gap:8px}.tile{padding:16px 6px;font-size:14px}.seg{flex-wrap:nowrap;gap:2px}.seg button{padding:7px 10px;font-size:14px}}
+.tile{display:grid;justify-items:center;gap:6px;padding:20px 10px;border:1px solid var(--line);border-radius:16px;background:var(--bg);color:var(--ink);font:inherit;font-weight:600;cursor:pointer}
+.tile:hover,.tile[aria-expanded=true]{border-color:var(--pri)}
+.tile .ic{width:28px;height:28px;border-radius:8px;background:var(--soft);display:grid;place-items:center;font-size:15px;color:var(--pri)}
+.tile small{font-weight:400;color:var(--muted);font-size:12px}
+.how{border:1px solid var(--line);border-radius:16px;padding:16px 20px;margin-top:12px}
+.how ol{margin:0;padding-left:20px}.how li{margin:6px 0}
+.how pre{margin:8px 0 0;padding:12px;border-radius:10px;background:var(--soft);color:var(--ink);font:14px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+.prompts{display:grid;gap:10px;margin-top:14px}
+.prompts div{border:1px solid var(--line);border-radius:14px;padding:12px 16px;color:var(--ink)}
+.prompts div::before{content:"“";color:var(--pri);font-weight:700;margin-right:2px}.prompts div::after{content:"”";color:var(--pri);font-weight:700}
+.foot{max-width:740px;margin:0 auto;border-top:1px solid var(--line);padding-top:18px;font-size:14px;color:var(--muted)}
+.g{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+:focus-visible{outline:2px solid var(--pri);outline-offset:2px}
+</style>
+</head>
+<body data-p="shoppers">
+<header>
+  <a href="/" aria-label="FOYU home"><img class="wm" id="wm" src="/brand/wordmark_Plum.png" alt="FOYU"></a>
+  <nav aria-label="Docs"><a href="/docs/mcp" aria-current="page">MCP</a><a href="/docs/api">API</a><a href="/developers">Developers</a></nav>
+</header>
+<main>
+  <h1>Set up in <span class="g">under a minute.</span></h1>
+  <p class="sub">Use FOYU from the AI assistant you already use.</p>
+
+  <div class="seg" role="group" aria-label="I am a">
+    <button type="button" data-p="shoppers" aria-pressed="true">Shoppers</button>
+    <button type="button" data-p="merchants" aria-pressed="false">Merchants</button>
+    <button type="button" data-p="partners" aria-pressed="false">Partners</button>
+    <button type="button" data-p="developers" aria-pressed="false">Developers</button>
+  </div>
+
+  <section class="step" aria-labelledby="s1">
+    <span class="tag">Step 1</span>
+    <h2 id="s1">Get access</h2>
+    <div class="note"><span class="pill">PREVIEW</span><span id="who">Private test, invite-only. Orders are test orders: no real money moves.</span></div>
+    <a class="btn" id="join" href="/joinnow">Join the waiting list</a>
+    <p class="muted" style="font-size:14px;margin:10px 0 0">Already invited? Your assistant asks you to approve with your FOYU passkey.</p>
+  </section>
+
+  <section class="step" aria-labelledby="s2">
+    <span class="tag">Step 2</span>
+    <h2 id="s2">Connect your assistant</h2>
+    <p class="muted" style="margin:0">Add FOYU as a remote MCP server.</p>
+    <div class="addr"><code id="addr">https://foyu.ai/mcp</code><button type="button" id="copy">Copy</button></div>
+    <div class="tiles" role="group" aria-label="Assistants">
+      <button type="button" class="tile" data-t="claude" aria-expanded="false" aria-controls="how"><span class="ic" aria-hidden="true">✳</span>Claude<small id="ct">Tested</small></button>
+      <button type="button" class="tile" data-t="code" aria-expanded="false" aria-controls="how"><span class="ic" aria-hidden="true">&gt;_</span>Claude Code<small>One command</small></button>
+      <button type="button" class="tile" data-t="other" aria-expanded="false" aria-controls="how"><span class="ic" aria-hidden="true">+</span>Other assistants<small>Any MCP client</small></button>
+    </div>
+    <div class="how" id="how" hidden aria-live="polite"></div>
+  </section>
+
+  <section class="step" aria-labelledby="s3">
+    <span class="tag">Step 3</span>
+    <h2 id="s3">Try it</h2>
+    <div class="prompts" id="prompts"></div>
+  </section>
+
+  <p class="foot" id="foot"></p>
+</main>
+<script>
+(function(){
+  var P = {
+    shoppers: { path: "/mcp", join: "/joinnow", wm: "Plum",
+      who: "Private test, invite-only. Orders are test orders: no real money moves.",
+      prompts: ["Find me a quiet desk fan under S$80", "Order the second one", "What are my spending limits?"],
+      foot: "FOYU never spends above the limits you signed, and asks for your yes in the FOYU app when your limits say so. Your assistant can pause your agent but can't resume it or change your limits." },
+    merchants: { path: "/merchants/mcp", join: "/merchants/joinnow", wm: "Harbour",
+      who: "Private test for FOYU's pilot stores. Orders are test orders: no real money moves.",
+      prompts: ["How is my store doing on FOYU?", "Show me the problems in my last feed import", "What would happen if an agent asked for 25% off?"],
+      foot: "Your assistant can read your store's FOYU data, try your agent rules in a sandbox and pause your store. It can't accept, refund or charge anything." },
+    partners: { path: "/partners/mcp", join: "/partners/joinnow", wm: "Harbour",
+      who: "Private test, for signed partners. Reports are totals only.",
+      prompts: ["Give me this month's programme report", "What would our customers see for 'a quiet kettle'?", "How would FOYU run inside our app?"],
+      foot: "Reports never show a person's name, email or orders. Your assistant can't change settings, approve anything or move money." },
+    developers: { path: "/developers/mcp", join: "/developers/joinnow", wm: "Harbour",
+      who: "Private test, invite-only. The sandbox uses fictional stores.",
+      prompts: ["How does FOYU decide an order?", "List the FOYU API routes", "Check this agent manifest before I list it"],
+      foot: "The developer tools search the docs, read the API reference and use the sandbox. They can't place orders or see anyone's data. API reference: foyu.ai/docs/api." }
+  };
+  var cur = "shoppers", open = null;
+  var $ = function(id){ return document.getElementById(id); };
+  var esc = function(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); };
+  var url = function(){ return "https://foyu.ai" + P[cur].path; };
+  var name = function(){ return cur === "shoppers" ? "foyu" : "foyu-" + cur; };
+  var HOW = {
+    claude: function(){ return "<ol><li>In Claude, open <b>Settings</b>, then <b>Connectors</b>.</li><li>Choose <b>Add custom connector</b> and paste <b>" + esc(url()) + "</b>.</li><li>Select <b>Connect</b> and approve with your FOYU passkey.</li></ol>"; },
+    code: function(){ return "<ol><li>Run this in your terminal:</li></ol><pre>claude mcp add --transport http " + name() + " " + esc(url()) + "</pre><ol start=\"2\"><li>In Claude Code, type <b>/mcp</b> and sign in with your FOYU passkey.</li></ol>"; },
+    other: function(){ return "<ol><li>Add a remote MCP server (Streamable HTTP) with the address <b>" + esc(url()) + "</b>.</li><li>Sign in when asked: FOYU uses OAuth 2.1 and your passkey. No API key needed.</li></ol><p class=\"muted\" style=\"font-size:14px;margin:8px 0 0\">We list an assistant here once we have tested it ourselves.</p>"; }
+  };
+  function render(){
+    document.body.setAttribute("data-p", cur);
+    $("wm").src = "/brand/wordmark_" + P[cur].wm + ".png";
+    $("addr").textContent = url();
+    $("join").href = P[cur].join;
+    $("who").textContent = P[cur].who;
+    $("prompts").innerHTML = P[cur].prompts.map(function(t){ return "<div>" + esc(t) + "</div>"; }).join("");
+    $("foot").textContent = P[cur].foot;
+    // Only the shoppers' server has been tested in Claude so far (claim guard).
+    $("ct").textContent = cur === "shoppers" ? "Tested" : "Custom connector";
+    document.querySelectorAll(".seg button").forEach(function(b){ b.setAttribute("aria-pressed", String(b.getAttribute("data-p") === cur)); });
+    if (open) $("how").innerHTML = HOW[open]();
+  }
+  document.querySelectorAll(".seg button").forEach(function(b){
+    b.addEventListener("click", function(){ cur = b.getAttribute("data-p"); try { history.replaceState(null, "", "#" + cur); } catch (e) {} render(); });
+  });
+  document.querySelectorAll(".tile").forEach(function(t){
+    t.addEventListener("click", function(){
+      var k = t.getAttribute("data-t"); open = open === k ? null : k;
+      document.querySelectorAll(".tile").forEach(function(x){ x.setAttribute("aria-expanded", String(x.getAttribute("data-t") === open)); });
+      $("how").hidden = !open; render();
+    });
+  });
+  $("copy").addEventListener("click", function(){
+    var b = $("copy");
+    (navigator.clipboard ? navigator.clipboard.writeText(url()) : Promise.reject()).then(function(){ b.textContent = "Copied"; setTimeout(function(){ b.textContent = "Copy"; }, 1800); }, function(){ b.textContent = "Select and copy"; });
+  });
+  var h = location.hash.replace("#", "");
+  if (P[h]) cur = h;
+  render();
+})();
+</script>
+</body>
+</html>
