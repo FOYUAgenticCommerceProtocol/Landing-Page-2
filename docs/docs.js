@@ -41,7 +41,7 @@
     ["Reference", "API", "/docs/api#reference", "routes openapi endpoints orders propose pause agents revoke"],
     ["Rules every call follows", "API", "/docs/api#rules", "policy engine idempotency cents instructions"]
   ];
-  var JOIN = { shoppers: "/joinnow", merchants: "/merchants/joinnow", partners: "/partners/joinnow", developers: "/developers/joinnow" };
+  var JOIN = { shoppers: "/join", merchants: "/merchants/join", partners: "/partners/contact", developers: "/developers/register-interest" };
 
   /* Top bar and tabs */
   var top = document.createElement("header");
