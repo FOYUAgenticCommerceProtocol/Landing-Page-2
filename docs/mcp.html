@@ -41,7 +41,7 @@
 
   <h2 id="get-access">Get access</h2>
   <p id="accessp">Accounts are by invitation during the private test. Already invited? Your assistant asks you to approve with your passkey the first time it connects.</p>
-  <p><a class="btn" id="join" href="/developers/joinnow">Join the waiting list</a></p>
+  <p><a class="btn" id="join" href="/developers/register-interest">Join the waiting list</a></p>
 
   <h2 id="claude">Claude <span class="badge n" id="ct">Custom connector</span></h2>
   <ol class="steps">
@@ -114,7 +114,7 @@
     $("who").textContent = p.who;
     $("can").textContent = p.can;
     $("foot").textContent = p.foot;
-    var j = { shoppers: "/joinnow", merchants: "/merchants/joinnow", partners: "/partners/joinnow", developers: "/developers/joinnow" }[cur];
+    var j = { shoppers: "/join", merchants: "/merchants/join", partners: "/partners/contact", developers: "/developers/register-interest" }[cur];
     $("join").href = j;
     if (window.docsSetJoin) window.docsSetJoin(cur);
     // Only the shoppers' server has been tested in Claude so far (claim guard).
