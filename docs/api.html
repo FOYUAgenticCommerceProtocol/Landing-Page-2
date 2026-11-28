@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>API · Agentic Commerce</title>
+<meta name="description" content="The API behind the shopping agent app and the MCP servers: search, propose, order, order status, limits. Private preview, test mode, OpenAPI 3.1 reference.">
+<link rel="icon" type="image/svg+xml" href="/media/favicon/harbour.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap">
+<link rel="stylesheet" href="/docs/docs.css?v=3">
+</head>
+<body data-page="api">
+<div class="dgrid">
+<aside class="dside" id="dside" aria-label="Docs"></aside>
+<article id="doc" tabindex="-1">
+  <p class="eyebrow">API</p>
+  <h1>API <span class="g">Quickstart</span></h1>
+  <p class="lede">The same actions the app and the MCP servers use, for your own code: search, propose, order, order status and limits.</p>
+
+  <div class="call"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><p><span class="pill">Preview</span>Private test, invite-only. Test mode: no real money moves. Developer keys are planned.</p></div>
+
+  <h2 id="basics">Base address and sign-in</h2>
+  <div class="kv">
+    <div><b>Base address</b><span><code>https://foyu.ai/api</code></span></div>
+    <div><b>Sign-in</b><span>Bearer token from <code>auth/start</code>. Invited accounts only.</span></div>
+    <div><b>Reference</b><span><a href="/api/v1/openapi.json">OpenAPI 3.1 file</a></span></div>
+  </div>
+
+  <h2 id="sandbox">Try the sandbox</h2>
+  <p>No sign-in. Fictional stores. Nothing is stored and nothing is bought.</p>
+  <div class="code"><div class="ch"><span>cURL</span><button type="button" class="copy">Copy</button></div><pre>curl -s https://foyu.ai/api/demo \
+  -H 'content-type: application/json' \
+  -d '{"op":"propose","mandateId":"im_demo1","intent":"a quiet desk fan under 80"}'</pre></div>
+  <p>The answer holds up to three ranked picks, each with the reasons it was chosen, and a proposal id you would pass to an order.</p>
+
+  <h2 id="reference">Reference</h2>
+  <p>Every route, grouped by who can call it. Routes marked <span class="lock" style="margin:0 2px">sign-in</span> need a bearer token.</p>
+  <div id="routes"><p>Loading the reference…</p></div>
+
+  <h2 id="rules">Rules every call follows</h2>
+  <ul class="rules">
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>Only the policy engine decides an order. No call can approve for a person or move money.</span></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>Text from stores is data, never instructions.</span></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>Amounts are whole numbers in cents.</span></li>
+    <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.2 4.2L19 7"/></svg><span>Every order carries an idempotency key, so a retry never orders twice.</span></li>
+  </ul>
+  <p>Prefer an AI assistant? <a href="/docs/mcp#developers">Connect the developer MCP server</a>.</p>
+
+  <nav class="pn" aria-label="More pages"><a href="/docs/mcp"><small>Previous</small><b>← MCP introduction</b></a></nav>
+</article>
+<aside class="dtoc" id="dtoc" aria-label="On this page"></aside>
+</div>
+<script src="/docs/docs.js?v=1"></script>
+<script>
+(function(){
+  var box = document.getElementById("routes");
+  var esc = function(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); };
+  var slug = function(s){ return "ref-" + String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); };
+  fetch("/api/v1/openapi.json", { headers: { accept: "application/json" } }).then(function(r){ if (!r.ok) throw 0; return r.json(); }).then(function(doc){
+    var areas = {}, order = (doc.tags || []).map(function(t){ return t.name; }), desc = {};
+    (doc.tags || []).forEach(function(t){ desc[t.name] = t.description; });
+    Object.keys(doc.paths).forEach(function(path){
+      var ops = doc.paths[path];
+      Object.keys(ops).forEach(function(m){
+        var o = ops[m], a = (o.tags && o.tags[0]) || "Other";
+        if (order.indexOf(a) < 0) order.push(a);
+        (areas[a] = areas[a] || []).push('<div class="route"><span class="mth ' + esc(m) + '">' + esc(m.toUpperCase()) + '</span><span class="pth">/api' + esc(path) + (o.security ? '<span class="lock">sign-in</span>' : '') + '</span><span class="sm">' + esc(o.summary || "") + '</span></div>');
+      });
+    });
+    box.innerHTML = order.filter(function(a){ return areas[a]; }).map(function(a){
+      return '<h3 id="' + slug(a) + '">' + esc(a) + '</h3>' + (desc[a] ? '<p>' + esc(desc[a]) + '.</p>' : '') + '<div class="routes">' + areas[a].join("") + '</div>';
+    }).join("");
+    if (window.docsRebuildToc) window.docsRebuildToc();
+  }).catch(function(){
+    box.innerHTML = '<p>The reference couldn\'t load. Open the <a href="/api/v1/openapi.json">OpenAPI file</a> directly.</p>';
+  });
+})();
+</script>
+</body>
+</html>

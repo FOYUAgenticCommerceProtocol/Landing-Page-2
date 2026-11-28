@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Agentic Commerce Docs</title>
+<meta name="description" content="Docs for the agentic commerce stack: MCP servers for the assistants you already use, and an API for your own code. Private preview, test mode.">
+<link rel="icon" type="image/svg+xml" href="/media/favicon/harbour.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap">
+<link rel="stylesheet" href="/docs/docs.css?v=3">
+</head>
+<body data-page="overview">
+<div class="dgrid">
+<aside class="dside" id="dside" aria-label="Docs"></aside>
+<article id="doc" tabindex="-1">
+  <p class="eyebrow">Get started</p>
+  <h1>Build on <span class="g">Agentic Commerce</span></h1>
+  <p class="lede">Connect the AI assistants you already use, or your own code, to shopping agents that order inside limits people sign. Two ways in, one set of rules.</p>
+
+  <div class="call"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><p><span class="pill">Preview</span>Private test, invite-only. Everything runs in test mode: no real money moves.</p></div>
+
+  <h2 id="choose">MCP or API</h2>
+  <p>There are two ways to work with the stack from software.</p>
+  <div class="tscroll"><table class="tbl">
+    <thead><tr><th scope="col"><span class="sr"></span></th><th scope="col">MCP</th><th scope="col">API</th></tr></thead>
+    <tbody>
+      <tr><th scope="row">Best for</th><td>AI assistants and coding agents</td><td>Your own apps and integrations</td></tr>
+      <tr><th scope="row">Offered as</th><td>Four remote MCP servers, one per audience</td><td>REST API with an OpenAPI 3.1 reference</td></tr>
+      <tr><th scope="row">Sign-in</th><td>OAuth 2.1 with your passkey, handled by your assistant</td><td>Bearer token from <code>auth/start</code></td></tr>
+      <tr><th scope="row">Availability</th><td>Private test, invite-only</td><td>Private test, invite-only. Developer keys are planned</td></tr>
+      <tr><th scope="row"></th><td><a href="/docs/mcp">Get started with MCP →</a></td><td><a href="/docs/api">Get started with the API →</a></td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="servers">Pick your server</h2>
+  <p>Each audience has its own MCP server address, with tools scoped to what that audience is allowed to do.</p>
+  <div class="cards">
+    <a class="card" href="/docs/mcp#shoppers"><span class="ci"><svg viewBox="0 0 24 24"><path d="M6 7h12l-1.2 10.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg></span><b>Shoppers</b><span>Find, compare and order inside the limits you signed.</span><code>foyu.ai/mcp</code><span class="arr" aria-hidden="true">→</span></a>
+    <a class="card" href="/docs/mcp#merchants"><span class="ci"><svg viewBox="0 0 24 24"><path d="M4 9l1.5-4h13L20 9"/><path d="M4 9h16v2a3 3 0 0 1-5.3 1.9A3 3 0 0 1 12 14a3 3 0 0 1-2.7-1.1A3 3 0 0 1 4 11z"/><path d="M5.5 14v5h13v-5"/></svg></span><b>Merchants</b><span>Read your store's data, test agent rules in a sandbox, pause your store.</span><code>foyu.ai/merchants/mcp</code><span class="arr" aria-hidden="true">→</span></a>
+    <a class="card" href="/docs/mcp#partners"><span class="ci"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="2"/><rect x="13" y="4" width="7" height="7" rx="2"/><rect x="4" y="13" width="7" height="7" rx="2"/><rect x="13" y="13" width="7" height="7" rx="2"/></svg></span><b>Partners</b><span>Programme reports in totals, and a preview of what your customers would see.</span><code>foyu.ai/partners/mcp</code><span class="arr" aria-hidden="true">→</span></a>
+    <a class="card" href="/docs/mcp#developers"><span class="ci"><svg viewBox="0 0 24 24"><path d="M8 9l-4 3 4 3M16 9l4 3-4 3M13.5 6l-3 12"/></svg></span><b>Developers</b><span>Search the docs, read the API reference and use the sandbox.</span><code>foyu.ai/developers/mcp</code><span class="arr" aria-hidden="true">→</span></a>
+  </div>
+
+  <h2 id="decided">How every order is decided</h2>
+  <p>Whichever way you connect, the same chain of authority applies. No call and no assistant can skip a step.</p>
+  <ol class="steps">
+    <li><b>The person sets the limits</b>A shopper signs their limits with a passkey on their own device.</li>
+    <li><b>The policy engine decides</b>Each order is checked against those limits: it goes ahead, waits for the person's yes, or is refused, with the reason.</li>
+    <li><b>The payment provider authorises</b>Payment is authorised by the bank or payment provider, never by an assistant.</li>
+    <li><b>The store stays the seller</b>The store accepts the order and keeps the customer relationship.</li>
+  </ol>
+
+  <h2 id="access">Preview and access</h2>
+  <p>The servers and the API are in a private test. Accounts are by invitation, orders are test orders, and the sandbox uses fictional stores.</p>
+  <p><a class="btn" href="/developers/register-interest">Register technical interest</a></p>
+
+  <nav class="pn" aria-label="Next page"><a class="nx" href="/docs/mcp"><small>Next</small><b>MCP introduction →</b></a></nav>
+</article>
+<aside class="dtoc" id="dtoc" aria-label="On this page"></aside>
+</div>
+<script src="/docs/docs.js?v=1"></script>
+</body>
+</html>

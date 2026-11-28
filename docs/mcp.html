@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MCP · Agentic Commerce</title>
+<meta name="description" content="Connect the AI assistant you already use to the agentic commerce stack. One MCP server address per audience: shoppers, merchants, partners and developers. Private preview, test mode.">
+<link rel="icon" type="image/svg+xml" href="/media/favicon/harbour.svg" id="fav">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap">
+<link rel="stylesheet" href="/docs/docs.css?v=3">
+</head>
+<body data-page="mcp" data-p="developers">
+<div class="dgrid">
+<aside class="dside" id="dside" aria-label="Docs"></aside>
+<article id="doc" tabindex="-1">
+  <p class="eyebrow">MCP servers</p>
+  <h1>Connect <span class="g">Your Assistant</span></h1>
+  <p class="lede">Use agentic commerce from the AI assistant you already use. Pick who you are, copy one address, and you are set up in under a minute.</p>
+
+  <span class="seglbl" id="seglbl">I am a</span>
+  <div class="seg" role="group" aria-labelledby="seglbl">
+    <button type="button" data-p="shoppers" aria-pressed="false">Shopper</button>
+    <button type="button" data-p="merchants" aria-pressed="false">Merchant</button>
+    <button type="button" data-p="partners" aria-pressed="false">Partner</button>
+    <button type="button" data-p="developers" aria-pressed="true">Developer</button>
+  </div>
+
+  <div class="call"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg><p><span class="pill">Preview</span><span id="who">Private test, invite-only. The sandbox uses fictional stores.</span></p></div>
+
+  <h2 id="address">Your server address</h2>
+  <p>A remote MCP server over Streamable HTTP. Your assistant signs you in with OAuth 2.1 and your passkey, so there is no API key to manage.</p>
+  <div class="addr"><code id="addr">https://foyu.ai/developers/mcp</code><button type="button" class="copy" id="copy">Copy</button></div>
+  <div class="tscroll"><table class="tbl">
+    <tbody>
+      <tr><th scope="row">Transport</th><td>Streamable HTTP</td></tr>
+      <tr><th scope="row">Sign-in</th><td>OAuth 2.1 with your passkey</td></tr>
+      <tr><th scope="row">What it can do</th><td id="can">Search the docs, read the API reference and use the sandbox.</td></tr>
+    </tbody>
+  </table></div>
+
+  <h2 id="get-access">Get access</h2>
+  <p id="accessp">Accounts are by invitation during the private test. Already invited? Your assistant asks you to approve with your passkey the first time it connects.</p>
+  <p><a class="btn" id="join" href="/developers/register-interest">Join the waiting list</a></p>
+
+  <h2 id="claude">Claude <span class="badge n" id="ct">Custom connector</span></h2>
+  <ol class="steps">
+    <li><b>Open Connectors</b>In Claude, open <strong>Settings</strong>, then <strong>Connectors</strong>.</li>
+    <li><b>Add a custom connector</b>Choose <strong>Add custom connector</strong> and paste <code class="u">https://foyu.ai/developers/mcp</code>.</li>
+    <li><b>Connect</b>Select <strong>Connect</strong> and approve with your passkey.</li>
+  </ol>
+
+  <h2 id="claude-code">Claude Code</h2>
+  <ol class="steps">
+    <li><b>Add the server</b>Run this in your terminal:
+      <div class="code"><div class="ch"><span>Terminal</span><button type="button" class="copy">Copy</button></div><pre id="cmd">claude mcp add --transport http foyu-developers https://foyu.ai/developers/mcp</pre></div></li>
+    <li><b>Sign in</b>In Claude Code, type <code>/mcp</code> and sign in with your passkey.</li>
+  </ol>
+
+  <h2 id="other">Other assistants</h2>
+  <ol class="steps">
+    <li><b>Add a remote MCP server</b>Use Streamable HTTP and the address <code class="u">https://foyu.ai/developers/mcp</code>.</li>
+    <li><b>Sign in when asked</b>OAuth 2.1 and your passkey. No API key needed.</li>
+  </ol>
+  <p>We list an assistant by name once we have tested it ourselves.</p>
+
+  <h2 id="try">Try it</h2>
+  <p>Once connected, ask in your own words. Tap a prompt to copy it.</p>
+  <div class="prompts" id="prompts"></div>
+
+  <h2 id="limits">What your assistant can and can't do</h2>
+  <div class="call ok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5.5c0 4.4-3 8-7 9.5-4-1.5-7-5.1-7-9.5V6z"/><path d="M9 12l2.2 2.2L15.5 10"/></svg><p id="foot"></p></div>
+
+  <nav class="pn" aria-label="More pages"><a href="/docs"><small>Previous</small><b>← Overview</b></a><a class="nx" href="/docs/api"><small>Next</small><b>API quickstart →</b></a></nav>
+</article>
+<aside class="dtoc" id="dtoc" aria-label="On this page"></aside>
+</div>
+<script src="/docs/docs.js?v=1"></script>
+<script>
+(function(){
+  var P = {
+    shoppers: { path: "/mcp", name: "foyu",
+      who: "Private test, invite-only. Orders are test orders: no real money moves.",
+      can: "Find and compare products, order inside your signed limits, show your orders and pause your agent.",
+      prompts: ["Find me a quiet desk fan under $80", "Order the second one", "What are my spending limits?"],
+      foot: "Your agent never spends above the limits you signed, and asks for your yes in the app when your limits say so. Your assistant can pause your agent but can't resume it or change your limits." },
+    merchants: { path: "/merchants/mcp", name: "foyu-merchants",
+      who: "Private test for pilot stores. Orders are test orders: no real money moves.",
+      can: "Read your store's data, try your agent rules in a sandbox and pause your store.",
+      prompts: ["How is my store doing with shopping agents?", "Show me the problems in my last feed import", "What would happen if an agent asked for 25% off?"],
+      foot: "Your assistant can read your store's data, try your agent rules in a sandbox and pause your store. It can't accept, refund or charge anything." },
+    partners: { path: "/partners/mcp", name: "foyu-partners",
+      who: "Private test, for signed partners. Reports are totals only.",
+      can: "Give programme reports in totals and preview what your customers would see.",
+      prompts: ["Give me this month's programme report", "What would our customers see for 'a quiet kettle'?", "How would the agent run inside our app?"],
+      foot: "Reports never show a person's name, email or orders. Your assistant can't change settings, approve anything or move money." },
+    developers: { path: "/developers/mcp", name: "foyu-developers",
+      who: "Private test, invite-only. The sandbox uses fictional stores.",
+      can: "Search the docs, read the API reference and use the sandbox.",
+      prompts: ["How is an order decided?", "List the API routes", "Check this agent manifest before I list it"],
+      foot: "The developer tools search the docs, read the API reference and use the sandbox. They can't place orders or see anyone's data." }
+  };
+  var cur = "developers";
+  var $ = function(id){ return document.getElementById(id); };
+  var esc = function(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); };
+  var url = function(){ return "https://foyu.ai" + P[cur].path; };
+  function render(){
+    var p = P[cur];
+    document.body.setAttribute("data-p", cur);
+    $("fav").href = "/media/favicon/" + (cur === "shoppers" ? "plum" : "harbour") + ".svg";
+    $("addr").textContent = url();
+    document.querySelectorAll("code.u").forEach(function(c){ c.textContent = url(); });
+    $("cmd").textContent = "claude mcp add --transport http " + p.name + " " + url();
+    $("who").textContent = p.who;
+    $("can").textContent = p.can;
+    $("foot").textContent = p.foot;
+    var j = { shoppers: "/join", merchants: "/merchants/join", partners: "/partners/contact", developers: "/developers/register-interest" }[cur];
+    $("join").href = j;
+    if (window.docsSetJoin) window.docsSetJoin(cur);
+    // Only the shoppers' server has been tested in Claude so far (claim guard).
+    var ct = $("ct");
+    ct.textContent = cur === "shoppers" ? "Tested" : "Custom connector";
+    ct.className = "badge" + (cur === "shoppers" ? "" : " n");
+    $("prompts").innerHTML = p.prompts.map(function(t){ return '<button type="button" class="prompt"><span>' + esc(t) + '</span><small>Copy</small></button>'; }).join("");
+    document.querySelectorAll(".seg button").forEach(function(b){ b.setAttribute("aria-pressed", String(b.getAttribute("data-p") === cur)); });
+    if (window.docsSpy) window.docsSpy();
+  }
+  document.querySelectorAll(".seg button").forEach(function(b){
+    b.addEventListener("click", function(){ cur = b.getAttribute("data-p"); try { history.replaceState(null, "", "#" + cur); } catch (e) {} render(); });
+  });
+  $("copy").addEventListener("click", function(){ window.docsCopy($("copy"), url()); });
+  $("prompts").addEventListener("click", function(e){
+    var b = e.target.closest(".prompt"); if (!b) return;
+    var s = b.querySelector("small"); window.docsCopy(s, b.querySelector("span").textContent);
+  });
+  function fromHash(scroll){
+    var h = location.hash.replace("#", "");
+    if (P[h]) { cur = h; render(); if (scroll) window.scrollTo({ top: 0 }); return true; }
+    return false;
+  }
+  window.addEventListener("hashchange", function(){ fromHash(true); });
+  if (!fromHash(false)) render();
+})();
+</script>
+</body>
+</html>

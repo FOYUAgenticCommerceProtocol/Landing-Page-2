@@ -57,13 +57,47 @@
 
 # PoC surfaces and APIs run on Vercel (repo FOYU_POC_Q4_2026, surfaces/web) and are served under foyu.ai.
 # These proxies come first so they win over the persona rules below. Status 200 keeps foyu.ai in the address bar.
-# FOYU for assistants (MCP): OAuth metadata that Claude and other assistants read before connecting to
-# foyu.ai/mcp. Served by the PoC on Vercel, like /api/*.
+# FOYU for assistants (MCP): the four MCP servers (foyu.ai/mcp, /merchants/mcp, /partners/mcp, /developers/mcp)
+# and the OAuth metadata assistants read before connecting. Served by the PoC on Vercel, like /api/*.
 [[redirects]]
   from = "/mcp"
   to = "https://foyu-poc-web.vercel.app/mcp"
   status = 200
   force = true
+
+[[redirects]]
+  from = "/merchants/mcp"
+  to = "https://foyu-poc-web.vercel.app/merchants/mcp"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/partners/mcp"
+  to = "https://foyu-poc-web.vercel.app/partners/mcp"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/developers/mcp"
+  to = "https://foyu-poc-web.vercel.app/developers/mcp"
+  status = 200
+  force = true
+
+# Docs: overview, MCP setup guide and API reference (static pages in docs/, shared docs.css and docs.js).
+[[redirects]]
+  from = "/docs"
+  to = "/docs/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/docs/mcp"
+  to = "/docs/mcp.html"
+  status = 200
+
+[[redirects]]
+  from = "/docs/api"
+  to = "/docs/api.html"
+  status = 200
 
 [[redirects]]
   from = "/.well-known/oauth-protected-resource/*"
@@ -131,65 +165,25 @@
   status = 200
   force = true
 
-# Section web addresses: foyu.ai/joinnow, foyu.ai/merchants/joinnow, foyu.ai/partners/faq and so on.
-# Each serves the one-page site, which opens that persona and scrolls to the section.
+# Section web addresses (27 Nov 2026): lowercase, hyphenated, business words, one per section and persona.
+# Each serves the one-page site, which opens that persona and scrolls to the section (the page script maps the word to the section).
+# Consumer: /how-it-works /why-agentic-shopping /use-cases /faq /join
+# Merchants: /merchants/how-it-works /merchants/why-sell-to-agents /merchants/agentic-mini-store /merchants/faq /merchants/join
+# Partners: /partners/how-it-works /partners/keep-your-customers /partners/agentic-mini-program /partners/faq /partners/contact
+# Developers: /developers/how-it-works /developers/why-build /developers/agentic-dev-platform /developers/tools /developers/faq /developers/register-interest
+
 [[redirects]]
-  from = "/joinnow"
+  from = "/how-it-works"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/mockups"
+  from = "/why-agentic-shopping"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/value"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/how"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/model"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/resp"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/control"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/platform"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/story"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/devhub"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/a2a"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/film"
+  from = "/use-cases"
   to = "/index.html"
   status = 200
 
@@ -199,67 +193,22 @@
   status = 200
 
 [[redirects]]
-  from = "/status"
+  from = "/join"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/merchants/joinnow"
+  from = "/merchants/how-it-works"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/merchants/mockups"
+  from = "/merchants/why-sell-to-agents"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/merchants/value"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/merchants/how"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/merchants/model"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/merchants/resp"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/merchants/control"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/merchants/platform"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/merchants/story"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/merchants/devhub"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/merchants/a2a"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/merchants/film"
+  from = "/merchants/agentic-mini-store"
   to = "/index.html"
   status = 200
 
@@ -269,67 +218,22 @@
   status = 200
 
 [[redirects]]
-  from = "/merchants/status"
+  from = "/merchants/join"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/partners/joinnow"
+  from = "/partners/how-it-works"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/partners/mockups"
+  from = "/partners/keep-your-customers"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/partners/value"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/partners/how"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/partners/model"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/partners/resp"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/partners/control"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/partners/platform"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/partners/story"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/partners/devhub"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/partners/a2a"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/partners/film"
+  from = "/partners/agentic-mini-program"
   to = "/index.html"
   status = 200
 
@@ -339,67 +243,27 @@
   status = 200
 
 [[redirects]]
-  from = "/partners/status"
+  from = "/partners/contact"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/developers/joinnow"
+  from = "/developers/how-it-works"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/developers/mockups"
+  from = "/developers/why-build"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/developers/value"
+  from = "/developers/agentic-dev-platform"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/developers/how"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/developers/model"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/developers/resp"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/developers/control"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/developers/platform"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/developers/story"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/developers/devhub"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/developers/a2a"
-  to = "/index.html"
-  status = 200
-
-[[redirects]]
-  from = "/developers/film"
+  from = "/developers/tools"
   to = "/index.html"
   status = 200
 
@@ -409,9 +273,271 @@
   status = 200
 
 [[redirects]]
-  from = "/developers/status"
+  from = "/developers/register-interest"
   to = "/index.html"
   status = 200
+
+# Earlier section addresses move permanently to the new ones, so shared links keep working.
+
+[[redirects]]
+  from = "/joinnow"
+  to = "/join"
+  status = 301
+
+[[redirects]]
+  from = "/mockups"
+  to = "/use-cases"
+  status = 301
+
+[[redirects]]
+  from = "/film"
+  to = "/how-it-works"
+  status = 301
+
+[[redirects]]
+  from = "/story"
+  to = "/why-agentic-shopping"
+  status = 301
+
+[[redirects]]
+  from = "/devhub"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/value"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/how"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/model"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/resp"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/control"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/platform"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/a2a"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/status"
+  to = "/"
+  status = 301
+
+[[redirects]]
+  from = "/merchants/joinnow"
+  to = "/merchants/join"
+  status = 301
+
+[[redirects]]
+  from = "/merchants/mockups"
+  to = "/merchants/agentic-mini-store"
+  status = 301
+
+[[redirects]]
+  from = "/merchants/film"
+  to = "/merchants/how-it-works"
+  status = 301
+
+[[redirects]]
+  from = "/merchants/story"
+  to = "/merchants/why-sell-to-agents"
+  status = 301
+
+[[redirects]]
+  from = "/merchants/devhub"
+  to = "/merchants"
+  status = 301
+
+[[redirects]]
+  from = "/merchants/value"
+  to = "/merchants"
+  status = 301
+
+[[redirects]]
+  from = "/merchants/how"
+  to = "/merchants"
+  status = 301
+
+[[redirects]]
+  from = "/merchants/model"
+  to = "/merchants"
+  status = 301
+
+[[redirects]]
+  from = "/merchants/resp"
+  to = "/merchants"
+  status = 301
+
+[[redirects]]
+  from = "/merchants/control"
+  to = "/merchants"
+  status = 301
+
+[[redirects]]
+  from = "/merchants/platform"
+  to = "/merchants"
+  status = 301
+
+[[redirects]]
+  from = "/merchants/a2a"
+  to = "/merchants"
+  status = 301
+
+[[redirects]]
+  from = "/merchants/status"
+  to = "/merchants"
+  status = 301
+
+[[redirects]]
+  from = "/partners/joinnow"
+  to = "/partners/contact"
+  status = 301
+
+[[redirects]]
+  from = "/partners/mockups"
+  to = "/partners/agentic-mini-program"
+  status = 301
+
+[[redirects]]
+  from = "/partners/film"
+  to = "/partners/how-it-works"
+  status = 301
+
+[[redirects]]
+  from = "/partners/story"
+  to = "/partners/keep-your-customers"
+  status = 301
+
+[[redirects]]
+  from = "/partners/devhub"
+  to = "/partners"
+  status = 301
+
+[[redirects]]
+  from = "/partners/value"
+  to = "/partners"
+  status = 301
+
+[[redirects]]
+  from = "/partners/how"
+  to = "/partners"
+  status = 301
+
+[[redirects]]
+  from = "/partners/model"
+  to = "/partners"
+  status = 301
+
+[[redirects]]
+  from = "/partners/resp"
+  to = "/partners"
+  status = 301
+
+[[redirects]]
+  from = "/partners/control"
+  to = "/partners"
+  status = 301
+
+[[redirects]]
+  from = "/partners/platform"
+  to = "/partners"
+  status = 301
+
+[[redirects]]
+  from = "/partners/a2a"
+  to = "/partners"
+  status = 301
+
+[[redirects]]
+  from = "/partners/status"
+  to = "/partners"
+  status = 301
+
+[[redirects]]
+  from = "/developers/joinnow"
+  to = "/developers/register-interest"
+  status = 301
+
+[[redirects]]
+  from = "/developers/mockups"
+  to = "/developers/agentic-dev-platform"
+  status = 301
+
+[[redirects]]
+  from = "/developers/film"
+  to = "/developers/how-it-works"
+  status = 301
+
+[[redirects]]
+  from = "/developers/story"
+  to = "/developers/why-build"
+  status = 301
+
+[[redirects]]
+  from = "/developers/devhub"
+  to = "/developers/tools"
+  status = 301
+
+[[redirects]]
+  from = "/developers/value"
+  to = "/developers"
+  status = 301
+
+[[redirects]]
+  from = "/developers/how"
+  to = "/developers"
+  status = 301
+
+[[redirects]]
+  from = "/developers/model"
+  to = "/developers"
+  status = 301
+
+[[redirects]]
+  from = "/developers/resp"
+  to = "/developers"
+  status = 301
+
+[[redirects]]
+  from = "/developers/control"
+  to = "/developers"
+  status = 301
+
+[[redirects]]
+  from = "/developers/platform"
+  to = "/developers"
+  status = 301
+
+[[redirects]]
+  from = "/developers/a2a"
+  to = "/developers"
+  status = 301
+
+[[redirects]]
+  from = "/developers/status"
+  to = "/developers"
+  status = 301
 
 # Persona web addresses: each serves the one-page site, which opens that persona's hero.
 [[redirects]]
