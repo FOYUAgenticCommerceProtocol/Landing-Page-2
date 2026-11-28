@@ -1,0 +1,63 @@
+# foyu.ai static site checks (gap build M5, 29 Nov 2026).
+# On every pull request and push to main: pages parse, every local link has a file or a redirect, netlify.toml
+# proxies only to FOYU hosts and keeps its security headers, no secret keys, no "live money" claims.
+# Every Monday and on demand it also asks the live site for each page and opens one "site-check" issue on a failure.
+name: site-check
+
+on:
+  pull_request: {}
+  push:
+    branches: [main]
+  schedule:
+    - cron: "23 2 * * 1"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  static:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/check-site.mjs
+
+  live:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ask foyu.ai for every page
+        id: live
+        run: |
+          fail=""
+          for f in $(git ls-files '*.html'); do
+            path="/${f%index.html}"; path="${path%.html}"
+            [ "$f" = "404.html" ] && continue
+            code=$(curl -s -o /dev/null -w '%{http_code}' -L --max-time 20 "https://foyu.ai$path")
+            if [ "$code" = "200" ]; then echo "ok    $path"; else echo "FAIL  $path ($code)"; fail="$fail\n- https://foyu.ai$path answered $code"; fi
+          done
+          if [ -n "$fail" ]; then printf '%b\n' "$fail" > failures.txt; echo "down=true" >> "$GITHUB_OUTPUT"; else echo "down=false" >> "$GITHUB_OUTPUT"; fi
+      - name: Open or update the issue
+        if: steps.live.outputs.down == 'true'
+        run: |
+          gh label create site-check --color D93F0B --description "foyu.ai page check failed" 2>/dev/null || true
+          open=$(gh issue list --label site-check --state open --json number --jq '.[0].number')
+          note="$(date -u '+%Y-%m-%d %H:%M UTC'): some foyu.ai pages did not answer. Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          $(cat failures.txt)"
+          if [ -n "$open" ]; then gh issue comment "$open" --body "$note"; else gh issue create --title "foyu.ai page check failed" --label site-check --body "$note"; fi
+          exit 1
+      - name: Close the issue when every page answers
+        if: steps.live.outputs.down == 'false'
+        run: |
+          open=$(gh issue list --label site-check --state open --json number --jq '.[0].number')
+          [ -n "$open" ] && gh issue close "$open" --comment "Every page answers again. Closing." || true
