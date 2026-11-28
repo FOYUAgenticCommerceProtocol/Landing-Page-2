@@ -28,7 +28,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .seg button[aria-pressed=true]{background:#fff;color:#111}
 header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:color-mix(in srgb,var(--paper) 94%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .hin{display:flex;align-items:center;gap:20px;height:64px}
-.wm{width:96px;height:26px;flex:none}
+.wm{width:96px;height:26px;flex:none}html[data-state^="merchants"] header.site .wm,html[data-state^="partners"] header.site .wm,html[data-state^="developers"] header.site .wm{background:var(--grad)}
 nav.main{display:flex;gap:2px;flex:1;position:relative;align-self:stretch;align-items:center}
 .dd{position:static}
 .dd>button{font:inherit;font-weight:550;background:none;border:0;color:var(--ink);padding:8px 12px;border-radius:999px;cursor:pointer;min-height:40px}
