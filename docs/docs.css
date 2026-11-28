@@ -15,8 +15,7 @@ code,pre,kbd,input,button{font-family:"Instrument Sans",system-ui,sans-serif}
 .dwrap{max-width:1360px;margin:0 auto;padding:0 max(20px,env(safe-area-inset-left,0px))}
 .dbar{display:flex;align-items:center;gap:16px;height:64px}
 .dhome{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink);flex:none}
-/* Brand rule: the gradient wordmark is for 120px and wider; smaller sizes use the solid primary colour. */
-.wm{display:block;width:96px;height:26px;background:var(--pri);-webkit-mask:var(--wm) left center/contain no-repeat;mask:var(--wm) left center/contain no-repeat}
+.wm{display:block;width:96px;height:26px;background:var(--grad);-webkit-mask:var(--wm) left center/contain no-repeat;mask:var(--wm) left center/contain no-repeat}
 .dhome .lbl{font-weight:600;font-size:15px;color:var(--muted);padding-left:12px;border-left:1px solid var(--line);line-height:22px}
 .dsearch{flex:0 1 340px;margin:0 auto;display:flex;align-items:center;gap:10px;height:40px;padding:0 10px 0 14px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--muted);font:inherit;font-size:14.5px;cursor:pointer;text-align:left}
 .dsearch:hover{border-color:color-mix(in srgb,var(--pri) 40%,var(--line))}
